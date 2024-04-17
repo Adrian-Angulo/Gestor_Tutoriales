@@ -1,0 +1,13 @@
+Construir un sistema gestor de tutoriales coda tutorial
+debe almacenar la informacion de una catgoria que puede ser
+(logica de programacion, flutter, node.js)
+el acceso al tutorial se da a partir de una URL, de igual forma
+estableces una prioridad de lectura (1 - 10), estado ( revisado, por revisar)
+
+Realice: 
+1. un documento con requerimientos funcionales
+2. un diagrama de clases
+3. Requerimientos tecnicos
+4. diagrama relacional
+5. permititr que se ingrese un tutorial a la base de datos.
+6. permitir que se liste la informacion de todos los tutoriales almacenados en la BD.

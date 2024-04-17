@@ -24,6 +24,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.css">
 
+        <!-- iconos boostrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
         <style>
             section{
                 padding-left: 10%;
@@ -161,6 +164,7 @@
                             <th scope="col">Prioridad</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">URL</th>
+                            <th scope="col">Opciones</th>
                         </tr>
                     </thead>
                     <tbody >
@@ -178,20 +182,51 @@
                             <td><%= t.getEstado()%></td>
                             <td><%= t.getPrioridad()%></td>
                             <td><%= Categoria.darNombreCategoria(t.getId_C())%></td>
-                            <td> <a href="<%= t.getUrl()%>"><%= t.getUrl()%></a></td>
-                        </tr>
-                        <%                                    }
-                        } else {
+                            <td> <a href="<%= t.getUrl()%>" target="_blank"> Enlace </a></td>
+                            <td>
 
-                        %>
-                        <tr>
-                            No hay datos para mostrar
-                        </tr>
+                    <center>
 
 
-                        <%    }
+                        <!-- Editar Perro -->
+                        <a href="SvCanino?tipo=editar&nombre=<%= t.getId_T()%>" class="btn btn-outline-warning" data-bs-toggle="editar" data-bs-target="#editar" data-nombre="<%= t.getId_T()%>"><i class="bi bi-pencil-fill"></i></a>                                        
 
-                        %>
+                        <!-- Eliminar Perro -->
+                        <!-- Llamamos un metodo para confirmar si deseamos eliminar (Solo avanza en true) y redirigimos con las variables-->
+                        <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar<%= t.getId_T()%>" data-nombre="<%= t.getId_T()%>"><i class="bi bi-trash3-fill"></i></a>
+                    </center>
+                    </td>
+                    </tr>
+
+                    <div class="modal fade" id="eliminar<%= t.getId_T()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    seguro que desea eliminar el tutorial <%= t.getNombre() %>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%                                    }
+                    } else {
+
+                    %>
+                    <tr>
+                        No hay datos para mostrar
+                    </tr>
+
+
+                    <%    }
+
+                    %>
                     </tbody>
                 </table>
         </section>

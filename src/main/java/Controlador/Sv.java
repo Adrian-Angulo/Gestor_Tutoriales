@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
@@ -34,6 +35,23 @@ public class Sv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String respuesta = request.getParameter("p");
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        switch (respuesta) {
+            case "Eliminar":
+                if(Tutorial.eliminarTutorial(id)){
+                    response.sendRedirect("index.jsp");
+                    //realizar un mensaje para notificar el que se ha eliminado
+                }else{
+                    response.sendRedirect("index.jsp");
+                }
+                    
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
        
     }
 
@@ -49,6 +67,10 @@ public class Sv extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String respuesta = request.getParameter("p");
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        System.out.println(id);
+        System.out.println(respuesta);
         switch (respuesta) {
             case "Agregar":
                     String nombre = request.getParameter("nombre");
@@ -82,6 +104,7 @@ public class Sv extends HttpServlet {
                 
                 
                 break;
+            
             default:
                 throw new AssertionError();
         }

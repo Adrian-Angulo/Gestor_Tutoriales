@@ -24,8 +24,6 @@ public class SvCategoria extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println("el id es: " + id);
         if (Categoria.eliminarCategoria(id)) {
@@ -49,10 +47,21 @@ public class SvCategoria extends HttpServlet {
 
             case "Agregar":
                 nombreC = request.getParameter("nombreC");
-                if (Categoria.agregarCategoria(nombreC)) {
+                if (nombreC.isEmpty() || nombreC == "" || Categoria.verExistencia(nombreC)) {
+                    
+                    System.out.println("nombre vacio");
                     response.sendRedirect("Categorias.jsp");
+                    
+
+                    
                 } else {
-                    response.sendRedirect("Categorias.jsp");
+                    
+                    
+                    if (Categoria.agregarCategoria(nombreC)) {
+                        response.sendRedirect("Categorias.jsp");
+                    } else {
+                        response.sendRedirect("Categorias.jsp");
+                    }
                 }
 
                 break;

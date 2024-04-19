@@ -34,4 +34,10 @@
             }, false);
         });
     })();
+
+    //JS para cerrar la alerta despues de 5 seg
+    setTimeout(function () {
+        document.getElementById('alerta').classList.add('d-none');
+    }, 5000);
+
 </script>

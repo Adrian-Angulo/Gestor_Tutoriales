@@ -65,9 +65,9 @@ public class Sv extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String respuesta = request.getParameter("p");
-        
+
         System.out.println(respuesta);
-        
+
         System.out.println(respuesta);
         switch (respuesta) {
             case "Agregar":
@@ -84,10 +84,16 @@ public class Sv extends HttpServlet {
                     if (Tutorial.agregarTutorial(t)) {
                         response.sendRedirect("index.jsp");
 
+//                        request.setAttribute("mostrarAlerta", "AgregarT");
+//                        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                    } else {
+                        response.sendRedirect("index.jsp");
+
+//                        request.setAttribute("mostrarAlerta", "AgregarT");
+//                        request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
-                } else {
-                    response.sendRedirect("index.jsp");
-                    System.out.println("no se encuentra la categoria");
+
                 }
 
                 // System.out.println(nombre+","+prioridad+","+estado+","+url+","+categoria );
@@ -100,33 +106,28 @@ public class Sv extends HttpServlet {
                 estado = request.getParameter("estado");
                 url = request.getParameter("url");
                 categoria = request.getParameter("categoria");
-                
+
                 Tutorial t1 = new Tutorial(nombre, prioridad, estado, url, Categoria.darIdCategoria(categoria));
                 t1.setId_T(id_T);
-                
-                
-                if(Tutorial.editarTutorial(t1)){
-                    response.sendRedirect("index.jsp");
-                    System.out.println("Tutorial actualizado");
-                }else{
-                    response.sendRedirect("index.jsp");
-                }
-                break;
 
+                if (!(nombre.isEmpty() || prioridad.isEmpty() || estado.isEmpty() || url.isEmpty() || categoria.isEmpty())) {
+
+                    if (Tutorial.editarTutorial(t1)) {
+                        response.sendRedirect("index.jsp");
+                        System.out.println("Tutorial actualizado");
+                    } else {
+                        response.sendRedirect("index.jsp");
+                    }
+                } else {
+                    response.sendRedirect("index.jsp");
+
+                }
+
+                break;
 
             default:
                 throw new AssertionError();
         }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

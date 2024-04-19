@@ -164,4 +164,15 @@ public class Categoria {
         }
         return null;
     }
+    
+    public static boolean verExistencia(String nombre){
+        boolean existencia = false;
+        for (Categoria categoria : listarCategoria()) {
+            if(categoria.nombre.equalsIgnoreCase(nombre)){
+                existencia = true;
+            }
+        }
+        
+        return existencia;
+    }
 }

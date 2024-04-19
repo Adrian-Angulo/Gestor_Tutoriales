@@ -29,10 +29,14 @@
                         <!-------------------------- Nombre Tutorial --------------->
                         <div class="col-md-6">
                             <label for="validationCustom03" class="form-label">Nombre de Tutorial</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control" id="nombre" maxlength="50" name="nombre" required>
                             <div class="invalid-feedback">
-                                Please provide a valid city.
+                                El nombre esta muy largo
                             </div>
+                            <div class="valid-feedback">
+                                Buen nombre
+                            </div>
+
                         </div>
 
                         <!-------------------------- Fin Nombre Tutorial --------------->
@@ -47,21 +51,34 @@
                                 <option>Por Revisar</option>
                             </select>
                             <div class="invalid-feedback">
-                                Please select a valid state.
+                                Escojer un estado por favor
+                            </div>
+                            <div class="valid-feedback">
+                                Muy bien
                             </div>
                         </div>
 
                         <!-------------------------- Prioridad Tutorial --------------->
                         <div class="col-md-3">
                             <label for="validationCustom01" class="form-label">Prioridad</label>
-                            <input type="number" class="form-control" id="prioridad" name="prioridad" value="Mark" required>
-
+                            <input type="number" class="form-control" id="prioridad" maxlength="10" name="prioridad" min="1" max="10" required>
+                            <div class="invalid-feedback">
+                                Solo numeros del 1 al 10.
+                            </div>
+                            <div class="valid-feedback">
+                                Muy bien
+                            </div>
                         </div>
                         <!-------------------------- Url Tutorial --------------->
                         <div class="col-md-8">
                             <label for="validationCustom03" class="form-label">url</label>
-                            <input type="text" class="form-control" id="url" name="url" required>
-
+                            <input type="url" class="form-control" id="url" name="url" pattern="https?://.+" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresar una Url
+                            </div>
+                            <div class="valid-feedback">
+                                Muy bien
+                            </div>
                         </div>
 
                         <!-------------------------- Categoria Tutorial --------------->
@@ -79,6 +96,10 @@
                                 <%                                                        }
                                 %>
                             </select>
+                            <div class="invalid-feedback">
+                                Seleccionar una categoria por favor
+                            </div>
+
 
                         </div>
                         <!-------------------------- Boton Tutorial --------------->
@@ -96,17 +117,28 @@
 
 
 
+
         <div style="height: 20px; background-color: white;"> </div>
         <br>
+
+
+
 
         <section  class="container" style="background-color: #e9edf3ef">
 
 
             <!-- Post preview-->
             <!-- Agregamos la clase text-center -->
-            <div>
-                <h2 class="post-title">Lista de Tutoriales
-                </h2>
+            <div class="row">
+                <div class="d-flex">
+                    <div class="p-2 flex-grow-1"><h2>Lista Tutoriales</h2></div>
+
+                    <div class="p-2">
+                        <!-- Agregar mensaje  -->
+                    </div>
+                </div>
+            </div>
+
             </div>
             <table id="myTabla" class="table table-striped" style="background-color: #e9edf3ef">
                 <thead>
@@ -173,9 +205,9 @@
 
 
                 <!---------------------------------- Modal para editar informacion ------------------------>
-                <div class="modal fade" id="editar<%= t.getId_T()%>" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                <div class="modal fade" id="editar<%= t.getId_T()%>" tabindex="-1" aria-labelledby="staticBackdropLabel" data-bs-backdrop="static" data-bs-target="#staticBackdrop"  aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content" style="background-color: #dee2e6; font-weight: bold;">
+                        <div class="modal-content" style=" font-weight: bold;">
                             <div class="modal-header ">
                                 <div class="container text-center">
 
@@ -190,7 +222,7 @@
                                     <!-------------------------- Nombre Tutorial --------------->
                                     <div class="col">
                                         <label for="validationCustom03" class="form-label">Nombre de Tutorial</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<%= t.getNombre()%>" required>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<%= t.getNombre()%>" required maxlength="50">
                                         <div class="invalid-feedback">
                                             Please provide a valid city.
                                         </div>
@@ -204,7 +236,7 @@
                                         <!-------------------------- Estado Tutorial --------------->
                                         <div class="col-4">
                                             <label for="validationCustom04" class="form-label">Estado</label>
-                                            <select class="form-select" id="estado" name="estado" required>
+                                            <select class="form-select" id="estado" name="estado" required >
                                                 <option selected disabled value="">Mas...</option>
                                                 <option>Revisado</option>
                                                 <option>Por Revisar</option>
@@ -248,8 +280,10 @@
 
                                     <!-------------------------- Boton Tutorial --------------->
                                     <br>
-                                    <div class="col-12">
-                                        <button id="btn-modal-editar" class="btn" type="submit">Actualizar Tutorial</button>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+
                                     </div>
                                 </form>
 
@@ -260,6 +294,7 @@
                         </div>
                     </div>
                 </div>
+
                 <%                                    }
                 } else {
 

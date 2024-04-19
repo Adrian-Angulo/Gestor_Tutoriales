@@ -7,12 +7,14 @@
              style="background-color: #527286; margin-bottom: 20px; padding: 10px 5px ; border-radius: 20px;">
 
 
-            <form method="post" action="SvCategoria?p=Agregar"  class="row">
+            <form method="post" action="SvCategoria?p=Agregar"  class="row needs-validation">
 
                 <div class="row">
                     <div class="col-10">
-                        <input type="text" name="nombreC" class="form-control" placeholder="Nombre de la categoria">
-                               
+                        <input type="text" id="validationCustom03" name="nombreC" class="form-control" maxlength="50" placeholder="Nombre de la categoria" required>
+                        <div class="invalid-feedback">
+                            Ingresar un nombre por favor
+                        </div>
                     </div>
                     <div class="col-2">
                         <input type="submit" class="form-control"  value="Enviar">
@@ -25,6 +27,7 @@
     </section>
 
 </section>
+
 
 <!-- Tabla para categoria -->
 

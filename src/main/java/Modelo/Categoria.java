@@ -47,17 +47,17 @@ public class Categoria {
 
     public static boolean agregarCategoria(String nombre) {
         Conexion db_connect = new Conexion();
-        boolean bol = false;
+        boolean agregado = false;
         try (Connection conexion = db_connect.get_connection()) {
             PreparedStatement ps = null;
             try {
-                String query = "INSERT INTO categorias (nombre) VALUES (?)";
+                String query = "INSERT INTO categoria (nombre) VALUES (?)";
                 ps = conexion.prepareStatement(query);
                 ps.setString(1, nombre);
 
                 ps.executeUpdate();
                 System.out.println("Categoria registrada");
-                bol = true;
+                agregado = true;
             } catch (SQLIntegrityConstraintViolationException e) {
                 System.out.println(" \nError: el numero que desea resgistrar ya se encuentra registrado " + e);
             } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class Categoria {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return bol;
+        return agregado;
     }
 
     public static List<Categoria> listarCategoria() {
@@ -96,18 +96,69 @@ public class Categoria {
         return listaCategoria;
     }
 
+    public static boolean editarCategoria(int id, String nombre) {
+        Conexion db_connect = new Conexion();
+        boolean actualizado = false;
+
+        try (Connection conexion = db_connect.get_connection()) {
+            PreparedStatement ps = null;
+            try {
+                String query = "UPDATE categoria SET nombre = ? WHERE idCategoria = ?";
+                ps = conexion.prepareStatement(query);
+                ps.setString(1, nombre);
+                ps.setInt(2, id);
+
+                int filaActualizada = ps.executeUpdate();
+                if (filaActualizada > 0) {
+                    System.out.println("Tutorial actualizado correctamente.");
+                    actualizado = true;
+                } else {
+                    System.out.println("No se encontró el tutorial con el ID especificado.");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error al editar el tutorial: " + ex);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error de conexión: " + e);
+        }
+
+        return actualizado;
+    }
+
+    public static boolean eliminarCategoria(int id_C) {
+        Conexion db_connect = new Conexion();
+        boolean eliminado=false;
+        try (Connection conexion = db_connect.get_connection()) {
+            PreparedStatement ps = null;
+            try {
+                String query = "DELETE FROM categoria WHERE idCategoria= ?";
+                ps = conexion.prepareStatement(query);
+                ps.setInt(1, id_C);
+                ps.executeUpdate();
+                eliminado = true;
+                System.out.println("La categoria ha sido borrada");
+            } catch (Exception e) {
+                System.out.println("No se pudo eliminar la categoria "+ e);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        return eliminado;
+    }
+
     public static int darIdCategoria(String nombreC) {
         for (Categoria c : listarCategoria()) {
-            if(c.getNombre().equalsIgnoreCase(nombreC)){
+            if (c.getNombre().equalsIgnoreCase(nombreC)) {
                 return c.getId_C();
             }
         }
         return 0;
     }
-    
-    public static String darNombreCategoria(int id){
+
+    public static String darNombreCategoria(int id) {
         for (Categoria c : listarCategoria()) {
-            if(c.getId_C() == id){
+            if (c.getId_C() == id) {
                 return c.getNombre();
             }
         }

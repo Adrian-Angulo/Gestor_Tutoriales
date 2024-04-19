@@ -65,9 +65,9 @@ public class Sv extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String respuesta = request.getParameter("p");
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        System.out.println(id);
+        
+        System.out.println(respuesta);
+        
         System.out.println(respuesta);
         switch (respuesta) {
             case "Agregar":

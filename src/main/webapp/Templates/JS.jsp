@@ -8,7 +8,30 @@
 <script src="https://cdn.datatables.net/2.0.4/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.4/js/dataTables.bootstrap5.js"></script>
 <script >
-
     new DataTable('#myTabla');
     new DataTable('#myTabla2');
+</script>
+
+<!-- JS para validar datos de los formularios -->
+<script >
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
 </script>

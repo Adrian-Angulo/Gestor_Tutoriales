@@ -8,7 +8,7 @@
 <%@include file="Templates/Head.jsp" %>
 <body style="background-color: #e9edf3ef" >
 
-    
+
     <%@include file="Templates/header.jsp" %>
     <main>
         <section >
@@ -65,19 +65,19 @@
                         </div>
 
                         <!-------------------------- Categoria Tutorial --------------->
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <label for="validationCustom04" class="form-label">Categoria</label>
                             <select class="form-select" id="categoria" name="categoria" required>
                                 <option selected disabled value="">Mas...</option>
-                                <option>Flutter</option>
-                                <option>Python</option>
-                                <option>Java</option>
-                                <option>Dark</option>
-                                <option>C++</option>
-                                <option>Node.js</option>
-                                <option>JavaScript</option>
-                                <option>HTML</option>
-                                <option>CSS</option>
+                                <%
+                                    for (Categoria c : Categoria.listarCategoria()) {
+
+
+                                %>
+                                <option><%= c.getNombre()%></option>
+
+                                <%                                                        }
+                                %>
                             </select>
 
                         </div>
@@ -99,7 +99,7 @@
         <div style="height: 20px; background-color: white;"> </div>
         <br>
 
-        <section  class="container"style="background-color: rgb(255, 255, 255);">
+        <section  class="container" style="background-color: #e9edf3ef">
 
 
             <!-- Post preview-->
@@ -108,7 +108,7 @@
                 <h2 class="post-title">Lista de Tutoriales
                 </h2>
             </div>
-            <table id="myTabla" class="table table-striped">
+            <table id="myTabla" class="table table-striped" style="background-color: #e9edf3ef">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

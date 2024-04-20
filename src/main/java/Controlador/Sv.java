@@ -47,6 +47,17 @@ public class Sv extends HttpServlet {
                 }
 
                 break;
+                
+            case "Editar":
+                Tutorial t = Tutorial.darTutorial(id);
+                if(t!=null){
+                    request.getSession().setAttribute("tutorial_E", t);
+                    response.sendRedirect("Form_Editar.jsp");
+                }else{
+                    System.out.println("no se pudo encontrar el tutorial");
+                }
+                
+                break;
             default:
                 throw new AssertionError();
         }

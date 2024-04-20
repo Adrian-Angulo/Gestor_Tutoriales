@@ -59,7 +59,7 @@
             }
 
             .categoria {
-               
+
             }
 
 
@@ -67,3 +67,4 @@
 
 
     </head>
+    <body style="background-color: #e9edf3ef" >

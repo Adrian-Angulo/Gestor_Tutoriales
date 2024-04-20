@@ -199,5 +199,15 @@ public class Tutorial {
 
         return updated;
     }
+    
+    public static Tutorial darTutorial(int id){
+        
+        for (Tutorial tutorial : listarTutorialesDB()) {
+            if(tutorial.getId_T() == id){
+                return tutorial;
+            }
+        }
+        return null;
+    }
 
 }

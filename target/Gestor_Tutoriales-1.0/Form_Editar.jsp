@@ -37,7 +37,7 @@
                 <!-------------------------- Estado Tutorial --------------->
                 <div class="col-md-3">
                     <label for="validationCustom04" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado" value="<%= t1.getEstado()%>" required>
+                    <select class="form-select" id="estado" name="estado"  required>
                         <option selected disabled value="">Mas...</option>
                         <option>Revisado</option>
                         <option>Por Revisar</option>

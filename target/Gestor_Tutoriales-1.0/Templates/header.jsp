@@ -23,7 +23,7 @@
 <!-- Page Header-->
     <header class="masthead"  style="background-image: url(https://images.unsplash.com/photo-1515266591878-f93e32bc5937?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); height:  400px;">
         <div class="container position">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
                         <h1>Gestor de tutoriales</h1>

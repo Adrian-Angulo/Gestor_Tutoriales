@@ -95,7 +95,7 @@ public class Sv extends HttpServlet {
                     if (Tutorial.agregarTutorial(t)) {
                         response.sendRedirect("index.jsp");
 
-//                        request.setAttribute("mostrarAlerta", "AgregarT");
+                        request.getSession().setAttribute("mensajeAlerta", true);
 //                        request.getRequestDispatcher("index.jsp").forward(request, response);
 
                     } else {

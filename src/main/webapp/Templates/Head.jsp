@@ -18,53 +18,56 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Título de la página</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="styles1.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.css">
+        
+        <!-- titutlo de la pagina -->
+        <title>Gestor de tutoriales</title>
+        
+        <!-- icono de la pagina -->
+        <link rel="icon" type="imege/x-icon" href="../Imagenes/aplicacion.png">
 
-        <!-- iconos boostrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- iconos boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-        <style>
-            section{
-                padding-left: 10%;
-                padding-right:  10%;
-            }
-
-
-            #btn-modal-editar{
-
-                font-weight: bold;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-            #btn-modal-editar:hover{
-                color: black;
-
-                background-color: white;
-            }
-
-            .modal-content{
-                border: 10px solid white;
-                border-radius: 30px;
-            }
-
-            .container1{
-                margin-top: 5%;
-                padding:5%;
-            }
-
-            .categoria {
-
-            }
+    <style>
+        section{
+            padding-left: 2%;
+            padding-right:  2%;
+        }
 
 
-        </style>
+        #btn-modal-editar{
+
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #btn-modal-editar:hover{
+            color: black;
+
+            background-color: white;
+        }
+
+        .modal-content{
+            border: 10px solid white;
+            border-radius: 30px;
+        }
+
+        .container1{
+            margin-top: 5%;
+            padding:5%;
+        }
 
 
-    </head>
-    <body style="background-color: #e9edf3ef" >
+
+    </style>
+
+
+</head>
+<body style="background-color: #e9edf3ef" >

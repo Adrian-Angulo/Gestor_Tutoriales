@@ -2,26 +2,24 @@
 <%@include file="Templates/Head.jsp"%>
 <%@include file="Templates/header.jsp" %>
 
-<section >
 
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col">
-            <div class="titulo text-center">
 
-                <h2>
-                    Editar Tutorial
-                </h2>
-            </div> 
-            <br>
-            <% Tutorial t1 = (Tutorial) request.getSession().getAttribute("tutorial_E"); %>
-            
+<section class="row d-flex justify-content-center">
+
+
+    <div class="col-6" style="padding: 3%;">
+
+        <h2 class="text-center">Agregar Tutorial</h2>
+
+        <div class="form" style="border: 3px solid white; border-radius: 30px; padding: 10px;">
+            <% Tutorial t1 = (Tutorial) request.getSession().getAttribute("tutorial_E");%>
+
             <form id="fomulario" method="post" action="Sv?p=Editar&id=<%= t1.getId_T()%>" class="row g-3 needs-validation" novalidate >
 
                 <!-------------------------- Nombre Tutorial --------------->
                 <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">Nombre de Tutorial</label>
-                    <input type="text" class="form-control" id="nombre" maxlength="50" name="nombre" value="<%= t1.getNombre() %>" required>
+                    <label for="validationCustom03" class="form-label">Editar Tutorial</label>
+                    <input type="text" class="form-control" id="nombre" maxlength="50" name="nombre" value="<%= t1.getNombre()%>" required>
                     <div class="invalid-feedback">
                         El nombre esta muy largo
                     </div>
@@ -64,8 +62,8 @@
                 <!-------------------------- Url Tutorial --------------->
                 <div class="col-md-8">
                     <label for="validationCustom03" class="form-label">url</label>
-                    <input type="url" class="form-control" id="url" name="url" value="<%= t1.getUrl() %> pattern="https?://.+" required>
-                    <div class="invalid-feedback">
+                    <input type="url" class="form-control" id="url" name="url" value="<%= t1.getUrl()%> pattern="https?://.+" required>
+                           <div class="invalid-feedback">
                         Por favor ingresar una Url
                     </div>
                     <div class="valid-feedback">
@@ -98,16 +96,18 @@
                 <div class="text-center">
                     <button class="btn btn-primary" type="submit">Editar</button>
                     <a href="index.jsp" class="btn btn-primary"  >Cancelar</a>
-                    
+
                 </div>
             </form>
         </div>
-        <div class="col-3"></div>
-
 
     </div>
     <br>
+
+
 </section>
+
+
 <%@include file="Templates/Tabla.jsp" %>
 <%@include file="Templates/JS.jsp" %>
 <%@include file="Templates/Footer.jsp" %>

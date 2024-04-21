@@ -9,7 +9,7 @@
 
 <%@include file="Templates/Head.jsp" %>
 <%@include file="Templates/header.jsp" %>
-<section class="row d-flex justify-content-center">
+<section class="row d-flex justify-content-center" style="border: none; background: linear-gradient(rgba(0, 0, 0, 2) 2%,rgba(208, 198, 193,3) 40% );">
 
 
     <div class="col-6" style="padding: 3%;">
@@ -98,17 +98,217 @@
                 </div>
                 <!-------------------------- Boton Tutorial --------------->
                 <div class="text-center">
-                    <button class="btn btn-primary" type="submit">Agregar tutorial</button>
+                    <button class="btn btn-outline-light" type="submit"> <strong>AGREGAR</strong> </button>
                 </div>
             </form>
         </div>
 
     </div>
 
-
-
 </section>
-<%@include file="Templates/Tabla.jsp" %>
+
+
+<section class="row d-flex justify-content-center">
+
+
+    <div class="col-10">
+
+        <div class="tabla" style="margin-top: 20px;">
+            <div class="row d-flex justify-content-between">
+                <div class="col">
+                    <h2>Lista de tutoriales</h2>
+
+                </div>
+                <div class="col d-flex justify-content-end">
+
+
+
+                    <%     String alerta = (String) request.getAttribute("alerta");
+                        if (alerta != null) {
+
+                            switch (alerta) {
+                                case "AgregadoT":
+
+                    %>
+
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+
+                        Se ha agregado un nuevo tutorial
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <%                            break;
+                        case "NoAgregadoT":
+                    %>
+
+
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+
+                        No se pudo agregar el tutorial
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <%
+                            break;
+                        case "EditadoT":
+                    %>
+
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+
+                        Se ha editado el tutorial
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <%
+                            break;
+                        case "NoEditadoT":
+                    %>
+
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+
+                        No se pudo editar el tutorial
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <%
+                        break;
+                    case "EliminadoT":
+                %>
+
+
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+
+                    Se ha eliminado el tutorial
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <%
+                        break;
+                    case "NoEliminadoT":
+                %>
+
+                <div class="alert alert-warning d-flex align-items-center" role="alert">
+
+                    No se pudo eliminar el tutorial
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <%
+                                break;
+                            default:
+
+                        }
+                    }
+
+                %>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <table id="myTabla" class="table table-striped" >
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Prioridad</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">URL</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <%                    List<Tutorial> listaDeTutoriales = Tutorial.listarTutorialesDB();
+                if (listaDeTutoriales != null) {
+                    for (Tutorial t : listaDeTutoriales) {
+
+
+            %>
+            <tr>
+                <th scope="row">
+                    <%= t.getId_T()%>
+                </th>
+                <td>
+                    <%= t.getNombre()%>
+                </td>
+                <td>
+                    <%= t.getEstado()%>
+                </td>
+                <td>
+                    <%= t.getPrioridad()%>
+                </td>
+                <td>
+                    <%= Categoria.darNombreCategoria(t.getId_C())%>
+                </td>
+                <td> <a href="<%= t.getUrl()%>" target="_blank"> Enlace </a></td>
+                <td>
+
+        <center>
+
+
+            <!-- Boton para editar el tutorial -->
+            <a href="Sv?p=Editar&id=<%= t.getId_T()%>" class="btn btn-outline-warning"><i
+                    class="bi bi-pencil-fill"></i></a>
+            <!-- Boton para eliminar el tutorial -->
+            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal"
+               data-bs-target="#eliminar<%= t.getId_T()%>" data-nombre="<%= t.getId_T()%>"><i
+                    class="bi bi-trash3-fill"></i></a>
+
+
+
+        </center>
+        </td>
+        </tr>
+
+
+
+
+        <!-- modal de confimacion para eliminar un tutorial -->
+
+        <div class="modal fade" id="eliminar<%= t.getId_T()%>" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        seguro que desea eliminar el tutorial <%= t.getNombre()%>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="Sv?p=Eliminar&id=<%= t.getId_T()%>" class="btn btn-outline-danger"> Eliminar </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <% }
+        } else { %>
+        <tr>
+            No hay datos para mostrar
+        </tr>
+
+
+        <% }%>
+        </tbody>
+    </table>
+</div>
+
+</section>                
+
 <%@include file="Templates/JS.jsp" %>
 <%@include file="Templates/Footer.jsp" %>
 

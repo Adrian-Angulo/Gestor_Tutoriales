@@ -1,7 +1,7 @@
 <%@include file="Templates/Head.jsp" %>
 <%@include file="Templates/header.jsp" %>
 
-<section class="container-fluid">
+<section class="container-fluid" style="border: none; background: linear-gradient(rgba(0, 0, 0, 2) 2%,rgba(208, 198, 193,3) 40% );">
     <div class="row justify-content-center">
         <div class="col-6 "
              style=" margin-bottom: 20px; padding: 10px 5px ; border-radius: 20px;">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <input type="submit" class="form-control"  value="Agregar">
+                       <button class="btn  btn-outline-light" type="submit"> <strong> Agregar </strong></button>
                     </div>
                 </div>
 
@@ -40,8 +40,8 @@
                 </h2>
             </div>
             <br>
-            <table id="myTabla2" class="table table-striped" style="border: 2px solid black">
-                <thead>
+            <table id="myTabla2" class="table "  >
+                <thead class="">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
@@ -49,7 +49,7 @@
 
                     </tr>
                 </thead>
-                <tbody >
+                <tbody class="table-group-divider">
 
                     <%
                         List<Categoria> listaDeCategoria = Categoria.listarCategoria();
@@ -58,16 +58,16 @@
 
 
                     %>
-                    <tr>
+                    <tr >
                         <th scope="row"><%= c.getId_C()%></th>
                         <td><%= c.getNombre()%></td>
                         <td>
 
                 <center>
                     <!-- Boton para editar el tutorial -->
-                    <a  class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-pencil-fill"></i></a>                                        
+                    <a  class="btn btn-outline-warning" style="border:none; border-radius: 50%" data-bs-toggle="modal" data-bs-target="#editar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-pencil-fill"></i></a>                                        
                     <!-- Boton para eliminar el tutorial -->
-                    <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="#" class="btn btn-outline-danger" style="border:none ; border-radius: 50%" data-bs-toggle="modal" data-bs-target="#eliminar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-trash3-fill"></i></a>
                 </center>
                 </td>
                 </tr>

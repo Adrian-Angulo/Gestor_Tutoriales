@@ -13,7 +13,7 @@
                 <li><a href="index.jsp ">inicio</a></li>
                 <li><a href="Tutoriales.jsp">Tutoriales</a></li>
                 <li><a href="Categorias.jsp">Categorias</a></li>
-                <li><a href="#footer">Contacto</a></li>
+                
             </ul>
         </nav>
     </div>
@@ -31,7 +31,7 @@
 
 
 
-<section class="Info " >
+<section class="Info ">
 
     <div class="row ">
         <div class="col-8 text-center" >

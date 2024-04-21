@@ -40,23 +40,26 @@ public class Sv extends HttpServlet {
         switch (respuesta) {
             case "Eliminar":
                 if (Tutorial.eliminarTutorial(id)) {
-                    response.sendRedirect("index.jsp");
-                    //realizar un mensaje para notificar el que se ha eliminado
+                    request.setAttribute("alerta", "EliminadoT");
+
+                    request.getRequestDispatcher("Tutoriales.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("index.jsp");
+                    request.setAttribute("alerta", "NoEliminadoT");
+
+                    request.getRequestDispatcher("Tutoriales.jsp").forward(request, response);
                 }
 
                 break;
-                
+
             case "Editar":
                 Tutorial t = Tutorial.darTutorial(id);
-                if(t!=null){
+                if (t != null) {
                     request.getSession().setAttribute("tutorial_E", t);
                     response.sendRedirect("Form_Editar.jsp");
-                }else{
+                } else {
                     System.out.println("no se pudo encontrar el tutorial");
                 }
-                
+
                 break;
             default:
                 throw new AssertionError();
@@ -93,16 +96,15 @@ public class Sv extends HttpServlet {
                 if (t.getId_C() != 0) {
 
                     if (Tutorial.agregarTutorial(t)) {
-                        response.sendRedirect("index.jsp");
 
-                        request.getSession().setAttribute("mensajeAlerta", true);
-//                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                        request.setAttribute("alerta", "AgregadoT");
+
+                        request.getRequestDispatcher("Tutoriales.jsp").forward(request, response);
 
                     } else {
-                        response.sendRedirect("index.jsp");
+                        request.setAttribute("alerta", "NoAgregadoT");
 
-//                        request.setAttribute("mostrarAlerta", "AgregarT");
-//                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                        request.getRequestDispatcher("Tutoriales.jsp").forward(request, response);
                     }
 
                 }
@@ -112,11 +114,13 @@ public class Sv extends HttpServlet {
 
             case "Editar":
                 int id_T = Integer.parseInt(request.getParameter("id"));
-                nombre = request.getParameter("nombre");
                 prioridad = request.getParameter("prioridad");
+                nombre = request.getParameter("nombre");
                 estado = request.getParameter("estado");
                 url = request.getParameter("url");
                 categoria = request.getParameter("categoria");
+                
+                System.out.println(nombre+","+prioridad+","+estado+","+url+","+categoria);
 
                 Tutorial t1 = new Tutorial(nombre, prioridad, estado, url, Categoria.darIdCategoria(categoria));
                 t1.setId_T(id_T);
@@ -124,10 +128,13 @@ public class Sv extends HttpServlet {
                 if (!(nombre.isEmpty() || prioridad.isEmpty() || estado.isEmpty() || url.isEmpty() || categoria.isEmpty())) {
 
                     if (Tutorial.editarTutorial(t1)) {
-                        response.sendRedirect("index.jsp");
-                        System.out.println("Tutorial actualizado");
+                        request.setAttribute("alerta", "EditadoT");
+
+                        request.getRequestDispatcher("Form_Editar.jsp").forward(request, response);
                     } else {
-                        response.sendRedirect("index.jsp");
+                        request.setAttribute("alerta", "NoEditadoT");
+
+                        request.getRequestDispatcher("Form_Editar.jsp").forward(request, response);
                     }
                 } else {
                     response.sendRedirect("index.jsp");

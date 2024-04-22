@@ -130,14 +130,14 @@ public class Sv extends HttpServlet {
                     if (Tutorial.editarTutorial(t1)) {
                         request.setAttribute("alerta", "EditadoT");
 
-                        request.getRequestDispatcher("Form_Editar.jsp").forward(request, response);
+                        request.getRequestDispatcher("Tutoriales.jsp").forward(request, response);
                     } else {
                         request.setAttribute("alerta", "NoEditadoT");
 
-                        request.getRequestDispatcher("Form_Editar.jsp").forward(request, response);
+                        request.getRequestDispatcher("Tutoriales.jsp").forward(request, response);
                     }
                 } else {
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("Tutoriales.jsp");
 
                 }
 

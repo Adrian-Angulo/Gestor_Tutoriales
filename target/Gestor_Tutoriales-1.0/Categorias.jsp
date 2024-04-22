@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                       <button class="btn  btn-outline-light" type="submit"> <strong> Agregar </strong></button>
+                        <button class="btn  btn-outline-light" type="submit"> <strong> Agregar </strong></button>
                     </div>
                 </div>
 
@@ -25,123 +25,218 @@
         </div>
 
     </div>
-    
-    
-    
-    
-    
-    <div class="row justify-content-center">
+
+
+
+
+
+    <div class="row d-flex justify-content-center align-items-center">
         <div class="col-6">
 
 
 
-            <div class="text-center">
+            <div class="text-center" style="color: white">
                 <h2 class="post-title">Lista de Categorias
                 </h2>
             </div>
-            <br>
-            <table id="myTabla2" class="table "  >
-                <thead class="">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Opciones</th>
+            <div class="row d-flex justify-content-center">
+            <div class="col-6 ">
+                <%     String alerta = (String) request.getAttribute("alerta");
+                    if (alerta != null) {
 
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
+                        switch (alerta) {
+                            case "AgregadoC":
 
-                    <%
-                        List<Categoria> listaDeCategoria = Categoria.listarCategoria();
-                        if (listaDeCategoria != null) {
-                            for (Categoria c : listaDeCategoria) {
+                %>
+
+                <div class="alert alert-success d-flex align-items-center justify-content-between" id="alerta" role="alert">
+
+                    Se ha agregado una categoria
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <%                            break;
+                    case "NoAgregadoC":
+                %>
 
 
-                    %>
-                    <tr >
-                        <th scope="row"><%= c.getId_C()%></th>
-                        <td><%= c.getNombre()%></td>
-                        <td>
+                <div class="alert alert-warning d-flex align-items-center justify-content-between"id="alerta" role="alert">
 
-                <center>
-                    <!-- Boton para editar el tutorial -->
-                    <a  class="btn btn-outline-warning" style="border:none; border-radius: 50%" data-bs-toggle="modal" data-bs-target="#editar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-pencil-fill"></i></a>                                        
-                    <!-- Boton para eliminar el tutorial -->
-                    <a href="#" class="btn btn-outline-danger" style="border:none ; border-radius: 50%" data-bs-toggle="modal" data-bs-target="#eliminar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-trash3-fill"></i></a>
-                </center>
-                </td>
+                    No se pudo la categoria
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <%
+                        break;
+                    case "EditadoC":
+                %>
+
+                <div class="alert alert-success d-flex align-items-center justify-content-between"id="alerta" role="alert">
+
+                    Se ha editado la categoria
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <%
+                        break;
+                    case "NoEditadoC":
+                %>
+
+                <div class="alert alert-warning d-flex align-items-center justify-content-between"id="alerta" role="alert">
+
+                    No se pudo editar la categoria
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <%
+                    break;
+                case "ElinimarC":
+            %>
+
+
+            <div class="alert alert-success d-flex align-items-centerjustify-content-between"id="alerta" role="alert">
+
+                Se ha eliminado una categoria
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <%
+                    break;
+                case "NoElinimarC":
+            %>
+
+            <div class="alert alert-warning d-flex align-items-center justify-content-between"id="alerta" role="alert">
+
+                No se pudo eliminar la categoria
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <%
+                    break;
+
+                case "ExisteC":
+            %>
+
+            <div class="alert alert-warning d-flex align-items-center justify-content-between"id="alerta" role="alert">
+
+                Ya existe una categoria con ese nombre
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <%
+                            break;
+                        default:
+
+                    }
+                }
+
+            %>
+
+        </div>
+        </div>
+        <br>
+        <table id="myTabla2" class="table "  >
+            <thead class="">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Opciones</th>
+
                 </tr>
+            </thead>
+            <tbody class="table-group-divider">
+
+                <%                        List<Categoria> listaDeCategoria = Categoria.listarCategoria();
+                    if (listaDeCategoria != null) {
+                        for (Categoria c : listaDeCategoria) {
+
+
+                %>
+                <tr >
+                    <th scope="row"><%= c.getId_C()%></th>
+                    <td><%= c.getNombre()%></td>
+                    <td>
+
+            <center>
+                <!-- Boton para editar el tutorial -->
+                <a  class="btn btn-outline-warning" style="border:none; border-radius: 50%" data-bs-toggle="modal" data-bs-target="#editar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-pencil-fill"></i></a>                                        
+                <!-- Boton para eliminar el tutorial -->
+                <a href="#" class="btn btn-outline-danger" style="border:none ; border-radius: 50%" data-bs-toggle="modal" data-bs-target="#eliminar<%= c.getId_C()%>" data-nombre="<%= c.getId_C()%>"><i class="bi bi-trash3-fill"></i></a>
+            </center>
+            </td>
+            </tr>
 
 
 
-                <!---------------- modal de confimacion para eliminar una categoria --------------->
+            <!---------------- modal de confimacion para eliminar una categoria --------------->
 
-                <div class="modal fade" id="eliminar<%= c.getId_C()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                seguro que desea eliminar la categoria <%= c.getNombre()%>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <a href="SvCategoria?id=<%= c.getId_C()%>" class="btn btn-outline-danger"> Eliminar </a>
-                            </div>
+            <div class="modal fade" id="eliminar<%= c.getId_C()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            seguro que desea eliminar la categoria <%= c.getNombre()%>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a href="SvCategoria?id=<%= c.getId_C()%>" class="btn btn-outline-danger"> Eliminar </a>
                         </div>
                     </div>
                 </div>
-                <!------------------ Fin modal de confimacion para eliminar un Categoria ----------------->
+            </div>
+            <!------------------ Fin modal de confimacion para eliminar un Categoria ----------------->
 
 
 
+            <!-- Modal para editar una categoria -->
+
+            <div class="modal fade" id="editar<%= c.getId_C()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="SvCategoria?p=Editar&id=<%= c.getId_C()%>" method="POST">
+
+                            <div class="modal-header">
+
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Caracteristica</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+
+                            <div class="row" style="margin: 20px; border: none">
+                                <div class="col-12">
+                                    <input type="text" name="nombreC" class="form-control" value="<%= c.getNombre()%>">
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
                 <!-- Modal para editar una categoria -->
 
-                <div class="modal fade" id="editar<%= c.getId_C()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="SvCategoria?p=Editar&id=<%= c.getId_C()%>" method="POST">
+                <%                                    }
+                } else {
 
-                                <div class="modal-header">
-
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Caracteristica</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
+                %>
+                <tr>
+                    No hay datos para mostrar
+                </tr>
 
 
-                                <div class="row" style="margin: 20px; border: none">
-                                    <div class="col-12">
-                                        <input type="text" name="nombreC" class="form-control" value="<%= c.getNombre()%>">
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+                <%    }
 
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Modal para editar una categoria -->
-
-                    <%                                    }
-                    } else {
-
-                    %>
-                    <tr>
-                        No hay datos para mostrar
-                    </tr>
-
-
-                    <%    }
-
-                    %>
-                    </tbody>
-            </table>
-        </div>
+                %>
+                </tbody>
+        </table>
     </div>
+</div>
 
 </section>
 

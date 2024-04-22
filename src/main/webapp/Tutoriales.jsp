@@ -131,7 +131,7 @@
 
                     %>
 
-                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="alert alert-success d-flex align-items-center"id="alerta" role="alert">
 
                         Se ha agregado un nuevo tutorial
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -142,7 +142,7 @@
                     %>
 
 
-                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div class="alert alert-warning d-flex align-items-center"id="alerta" role="alert">
 
                         No se pudo agregar el tutorial
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -153,7 +153,7 @@
                         case "EditadoT":
                     %>
 
-                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="alert alert-success d-flex align-items-center"id="alerta" role="alert">
 
                         Se ha editado el tutorial
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -164,7 +164,7 @@
                         case "NoEditadoT":
                     %>
 
-                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div class="alert alert-warning d-flex align-items-center" id="alerta"role="alert">
 
                         No se pudo editar el tutorial
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -177,7 +177,7 @@
                 %>
 
 
-                <div class="alert alert-success d-flex align-items-center" role="alert">
+                <div class="alert alert-success d-flex align-items-center"id="alerta" role="alert">
 
                     Se ha eliminado el tutorial
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -188,7 +188,7 @@
                     case "NoEliminadoT":
                 %>
 
-                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <div class="alert alert-warning d-flex align-items-center" id="alerta" role="alert">
 
                     No se pudo eliminar el tutorial
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -253,7 +253,9 @@
                 <td>
 
         <center>
-
+            <!-- Boton para vel datos del tutorial el tutorial -->
+            <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal"
+               data-bs-target="#Ver<%= t.getId_T()%>" data-nombre="<%= t.getId_T()%>"><i class="bi bi-eye-fill"></i></a>
 
             <!-- Boton para editar el tutorial -->
             <a href="Sv?p=Editar&id=<%= t.getId_T()%>" class="btn btn-outline-warning"><i
@@ -288,6 +290,42 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <a href="Sv?p=Eliminar&id=<%= t.getId_T()%>" class="btn btn-outline-danger"> Eliminar </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal para ver informacion del tutorial -->
+
+        <div class="modal modal-xl" id="Ver<%= t.getId_T()%>" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><%= t.getNombre() %></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe width="1060" height="315" src="<%= t.getUrl() %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="row">
+
+                            <div class="col">
+                                Categoria: <%= Categoria.darNombreCategoria(t.getId_C()) %>
+                            </div>
+                            <div class="col">
+                                Prioridad: <%= t.getPrioridad() %>
+                            </div>
+                            <div class="col">
+                                
+                                Estado: <%= t.getEstado() %>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        
                     </div>
                 </div>
             </div>

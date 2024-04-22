@@ -27,10 +27,14 @@ public class SvCategoria extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println("el id es: " + id);
         if (Categoria.eliminarCategoria(id)) {
-            response.sendRedirect("Categorias.jsp");
+            request.setAttribute("alerta", "ElinimarC");
+
+            request.getRequestDispatcher("Categorias.jsp").forward(request, response);
 
         } else {
-            response.sendRedirect("Categorias.jsp");
+            request.setAttribute("alerta", "NoEliminarC");
+
+            request.getRequestDispatcher("Categorias.jsp").forward(request, response);
         }
 
     }
@@ -47,21 +51,29 @@ public class SvCategoria extends HttpServlet {
 
             case "Agregar":
                 nombreC = request.getParameter("nombreC");
-                if (nombreC.isEmpty() || nombreC == "" || Categoria.verExistencia(nombreC)) {
-                    
+                if (nombreC.isEmpty() || nombreC == "") {
+
                     System.out.println("nombre vacio");
                     response.sendRedirect("Categorias.jsp");
-                    
 
-                    
                 } else {
-                    
-                    
-                    if (Categoria.agregarCategoria(nombreC)) {
-                        response.sendRedirect("Categorias.jsp");
-                    } else {
-                        response.sendRedirect("Categorias.jsp");
+                    if (Categoria.verExistencia(nombreC)) {
+                        request.setAttribute("alerta", "ExisteC");
+
+                        request.getRequestDispatcher("Categorias.jsp").forward(request, response);
+                    }else{
+                        
+                        if (Categoria.agregarCategoria(nombreC)) {
+                            request.setAttribute("alerta", "AgregadoC");
+
+                            request.getRequestDispatcher("Categorias.jsp").forward(request, response);
+                        } else {
+                            request.setAttribute("alerta", "NoAgregadoC");
+
+                            request.getRequestDispatcher("Categorias.jsp").forward(request, response);
+                        }
                     }
+
                 }
 
                 break;
@@ -69,9 +81,13 @@ public class SvCategoria extends HttpServlet {
                 nombreC = request.getParameter("nombreC");
                 id = Integer.parseInt(request.getParameter("id"));
                 if (Categoria.editarCategoria(id, nombreC)) {
-                    response.sendRedirect("Categorias.jsp");
+                    request.setAttribute("alerta", "EditadoC");
+
+                    request.getRequestDispatcher("Categorias.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("Categorias.jsp");
+                    request.setAttribute("alerta", "NoEditadoC");
+
+                        request.getRequestDispatcher("Categorias.jsp").forward(request, response);
                 }
 
                 break;

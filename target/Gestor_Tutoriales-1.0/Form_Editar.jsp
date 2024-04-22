@@ -9,7 +9,7 @@
 
     <div class="col-6" style="padding: 3%;">
 
-        <h2 class="text-center">Agregar Tutorial</h2>
+        <h2 class="text-center">Editar Tutorial</h2>
 
         <div class="form" style="border: 3px solid white; border-radius: 30px; padding: 10px;">
             <% Tutorial t1 = (Tutorial) request.getSession().getAttribute("tutorial_E");%>
@@ -95,7 +95,7 @@
                 <!-------------------------- Boton Tutorial --------------->
                 <div class="text-center">
                     <button class="btn  btn-outline-light" type="submit"> <strong> Editar </strong></button>
-                    <a href="Form_Editar.jsp" class="btn  btn-outline-light"  ><strong> Cancelar </strong></a>
+                    <a href="Tutoriales.jsp" class="btn  btn-outline-light"  ><strong> Cancelar </strong></a>
 
                 </div>
             </form>
@@ -130,7 +130,7 @@
                                 case "EditadoT":
                     %>
 
-                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="alert alert-success d-flex align-items-center"id="alerta" role="alert">
 
                         Se ha editado el tutorial
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -141,7 +141,7 @@
                         case "NoEditadoT":
                     %>
 
-                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div class="alert alert-warning d-flex align-items-center"id="alerta" role="alert">
 
                         No se pudo editar el tutorial
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -247,95 +247,37 @@
             </div>
         </div>
 
-
-        <!---------------------------------- Modal para editar informacion ------------------------>
-        <div class="modal fade" id="editar<%= t.getId_T()%>" tabindex="-1" aria-labelledby="staticBackdropLabel"
-             data-bs-backdrop="static" data-bs-target="#staticBackdrop" aria-hidden="true">
+                    <!-- Modal para mostrar informacion de el tutorial -->
+        <div class="modal modal-xl" id="Ver<%= t.getId_T()%>" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style=" font-weight: bold;">
-                    <div class="modal-header ">
-                        <div class="container text-center">
-
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Informacion de tutorial</h1>
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"><%= t.getNombre()%></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" style="padding:10%;">
+                    <div class="modal-body">
+                        <iframe width="1060" height="315" src="<%= t.getUrl()%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="row">
 
-                        <form method="post" action="Sv?p=Editar&id=<%= t.getId_T()%>" class="row g-3 needs-validation"
-                              novalidate>
-
-                            <!-------------------------- Nombre Tutorial --------------->
                             <div class="col">
-                                <label for="validationCustom03" class="form-label">Nombre de Tutorial</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%= t.getNombre()%>"
-                                       required maxlength="50">
-                                <div class="invalid-feedback">
-                                    Please provide a valid city.
-                                </div>
+                                Categoria: <%= Categoria.darNombreCategoria(t.getId_C())%>
                             </div>
-
-                            <!-------------------------- Fin Nombre Tutorial --------------->
-
-                            <div class="row">
-
-
-                                <!-------------------------- Estado Tutorial --------------->
-                                <div class="col-4">
-                                    <label for="validationCustom04" class="form-label">Estado</label>
-                                    <select class="form-select" id="estado" name="estado" required>
-                                        <option selected disabled value="">Mas...</option>
-                                        <option>Revisado</option>
-                                        <option>Por Revisar</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please select a valid state.
-                                    </div>
-                                </div>
-
-                                <!-------------------------- Prioridad Tutorial --------------->
-                                <div class="col-4">
-                                    <label for="validationCustom01" class="form-label">Prioridad</label>
-                                    <input type="number" class="form-control" id="prioridad" name="prioridad"
-                                           value="<%= t.getPrioridad()%>" required>
-
-                                </div>
-                                <!-------------------------- Categoria Tutorial --------------->
-                                <div class="col-4">
-                                    <label for="validationCustom04" class="form-label">Categoria</label>
-                                    <select class="form-select" id="categoria" name="categoria" required>
-                                        <option selected disabled value="">Mas...</option>
-                                        <% for (Categoria c : Categoria.listarCategoria()) {%>
-                                        <option>
-                                            <%= c.getNombre()%>
-                                        </option>
-
-                                        <% }%>
-                                    </select>
-
-                                </div>
-                            </div>
-
-                            <!-------------------------- Url Tutorial --------------->
                             <div class="col">
-                                <label for="validationCustom03" class="form-label">url</label>
-                                <input type="text" class="form-control" id="url" name="url" value="<%= t.getUrl()%>" required>
-
+                                Prioridad: <%= t.getPrioridad()%>
                             </div>
+                            <div class="col">
 
-                            <!-------------------------- Boton Tutorial --------------->
-                            <br>
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
-
+                                Estado: <%= t.getEstado()%>
                             </div>
-                        </form>
-
+                        </div>
 
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
+                    </div>
                 </div>
             </div>
         </div>

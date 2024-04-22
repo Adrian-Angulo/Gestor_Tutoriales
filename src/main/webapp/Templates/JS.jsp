@@ -38,8 +38,14 @@
     })();
 
     //JS para cerrar la alerta despues de 5 seg
-    setTimeout(function () {
-        document.getElementById('alerta').classList.add('d-none');
-    }, 5000);
+    
+    // Selecciona el elemento de alerta por su id
+    var alerta = document.getElementById('alerta');
+
+    // Oculta el elemento después de 5 segundos
+    setTimeout(function() {
+        alerta.style.display = 'none';
+    }, 5000); // 5000 milisegundos = 5 segundos
+
 
 </script>

@@ -2,7 +2,7 @@
 <%@include file="Templates/Head.jsp"%>
 <%@include file="Templates/header.jsp" %>
 
-
+<!-- seccion para el formulario de editar -->
 
 <section class="row d-flex justify-content-center" style="border: none; background: linear-gradient(rgba(0, 0, 0, 2) 2%,rgba(208, 198, 193,3) 40% );">
 
@@ -166,6 +166,8 @@
         </div>
 
     </div>
+                
+                <!-- tabla del formulario editar -->
 
     <table id="myTabla" class="table table-striped" >
         <thead>

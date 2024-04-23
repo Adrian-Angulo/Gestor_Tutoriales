@@ -1,12 +1,14 @@
 <%@include file="Templates/Head.jsp" %>
 <%@include file="Templates/header.jsp" %>
 
+
+<!-- Seccion para agregar la categoria -->
 <section class="container-fluid" style="border: none; background: linear-gradient(rgba(0, 0, 0, 2) 2%,rgba(208, 198, 193,3) 40% );">
     <div class="row justify-content-center">
         <div class="col-6 "
              style=" margin-bottom: 20px; padding: 10px 5px ; border-radius: 20px;">
 
-
+            <!-- Formulario para agregar la categoria -->
             <form method="post" action="SvCategoria?p=Agregar"  class="row needs-validation">
 
                 <div class="row">
@@ -29,7 +31,7 @@
 
 
 
-
+    <!-- En esta parte se puede administrar las aletas que apareceran en la pagina -->
     <div class="row d-flex justify-content-center align-items-center">
         <div class="col-6">
 
@@ -41,10 +43,14 @@
             </div>
             <div class="row d-flex justify-content-center">
             <div class="col-6 ">
+                
+                <!-- Se recibe el valor del parametro alerta de el servlet SvCategoria -->
                 <%     String alerta = (String) request.getAttribute("alerta");
-                    if (alerta != null) {
+                    if (alerta != null) { //si la categoria es diferente a null se identifica el valor del la variable alerta
 
                         switch (alerta) {
+                        
+                            // si el valor de la alerta en AgregadoC se manda un mensaje en pantalla para mostar mensaje de que se agrego una categoria
                             case "AgregadoC":
 
                 %>
@@ -136,6 +142,8 @@
         </div>
         </div>
         <br>
+        
+        <!-- Tabla para mostarar las categorias registrardas -->
         <table id="myTabla2" class="table "  >
             <thead class="">
                 <tr>
@@ -147,13 +155,16 @@
             </thead>
             <tbody class="table-group-divider">
 
-                <%                        List<Categoria> listaDeCategoria = Categoria.listarCategoria();
-                    if (listaDeCategoria != null) {
-                        for (Categoria c : listaDeCategoria) {
+               
+               
+                <%                        List<Categoria> listaDeCategoria = Categoria.listarCategoria(); // se agrega las categorias a un arraylist
+                    if (listaDeCategoria != null) { // verofica si la lista es diferente de null
+                        for (Categoria c : listaDeCategoria) { // si la lista es diferente de null recorremos la listas  
 
 
                 %>
                 <tr >
+                    <!-- mostramos las categorias registradas  -->
                     <th scope="row"><%= c.getId_C()%></th>
                     <td><%= c.getNombre()%></td>
                     <td>

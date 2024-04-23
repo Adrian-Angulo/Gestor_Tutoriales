@@ -1,9 +1,9 @@
 <%@include file="Templates/Head.jsp"%>
 
-
+<!-- Navar para navegar entre paginas -->
 <header class="header">
     <div class="menu container">
-        <a href="index.html" class="logo">Gestor de Tutoriales</a>
+        <a href="index.jsp" class="logo">Gestor de Tutoriales</a>
         <input type="checkbox" id="menu">
         <label for="menu">
             <img src="images/menu.png" class="menu-icono" alt="">
@@ -30,18 +30,16 @@
 </header>
 
 
+<!-- Informacion para la presentacion de la pagina -->
 
 <section class="Info ">
 
     <div class="row ">
         <div class="col-8 text-center" >
             <h4>Tutorial</h4>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, quia assumenda. Maiores officia voluptatem
-            sunt vero illum quos facilis similique, nulla hic, sapiente fugit sint quasi, rem molestiae voluptate! Enim.
-            Ad at laborum commodi iste laboriosam ducimus ipsum consectetur accusantium cumque repudiandae delectus rem
-            iusto corporis, harum asperiores reiciendis ex ut? A eaque tenetur magnam quos nemo sit maiores molestiae.
-            Veniam quibusdam ut aliquam quasi iste id quam dolor, fugiat nam voluptas quod animi reiciendis delectus nulla
-            incidunt labore porro sunt ipsam ad numquam, odio repellat repellendus. Minima, placeat vero.
+            En esta pagina web podemos crear tutoriales para en listarlos y gestionarlos, los tutoriales son un buen contenido
+            para aprender y reforzar tus habilidades lo que sera genial tenerlos organizados, asi como priorizarlos, agregarle las categorias
+            ver el tutorial en la pagina al igual de el enlace que te envia donde esta el tutorial en youtube
         </div >
         <div class="col-4">
             <img src="Imagenes/img2.jpg" style="border-radius: 30px" height="250px" alt="">
@@ -55,10 +53,9 @@
             <img src="Imagenes/img3.jpg" style="border-radius: 30px" height="250px" alt="">
         </div>
         <div class="col-8 text-center">
-            <h4>Caracteristicas</h4>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error quas nobis itaque voluptas consequuntur
-            aspernatur fuga nesciunt voluptate vero maiores eligendi hic molestiae nostrum veritatis, enim tempore.
-            Molestias, ut architecto.
+            <h4>Categorias</h4>
+            En este apartado podras agregar una categoria para poder agregar un tutorial segun tu categoria, lo que hace una manera practica de organizar
+            tus tutoriales
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 <!-- Navar para navegar entre paginas -->
 <header class="header">
     <div class="menu container">
-        <a href="index.jsp" class="logo">Gestor de Tutoriales</a>
+        <a href="index.jsp" class="logo" style=" text-decoration: none">Gestor de Tutoriales</a>
         <input type="checkbox" id="menu">
         <label for="menu">
             <img src="images/menu.png" class="menu-icono" alt="">
